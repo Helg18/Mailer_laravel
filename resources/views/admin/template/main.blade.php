@@ -5,7 +5,7 @@
 	<title>@yield('title', 'Default') | Panel de administrador</title>
 	<link rel="stylesheet" href="{{ asset('plugins/bootstrap/css/bootstrap.css') }}">
 </head>
-<body background="https://encrypted-tbn2.gstatic.com/images?q=tbn:ANd9GcQoMtgs25-vXRgh6bTtxdPdI5SJEuvEq_REun7Vs6SLr5LNH_b2">
+<body background="https://image.freepik.com/foto-gratis/4-de-textura-aspera_21000118.jpg">
 <div class="container" width="80%">
 	<div class="row-fluid">
 		<div class="span12">
