@@ -32,8 +32,10 @@ la ruta desde donde estamos trayendo la plantilla matriz
    {!! Form::text('nombre', $cliente->nombre, ['class'=>'form-control', 'placeholder'=>'Nombre' ,'required', 'autocomplete=off']) !!}
 </div>
 <div class="form-group" align="left">
-   {!! Form::label('email', 'Email principal') !!}
-   {!! Form::text('email', null, ['class'=>'form-control', 'placeholder'=>'Nombre' ,'required', 'autocomplete=off']) !!}
+     {!! Form::label('email', 'Email Principal') !!}
+@foreach ($correo as $correos)
+     {!! Form::text('email', $correos->correo, ['class'=>'form-control', 'placeholder'=>'correo@midominio.com' ,'required', 'autocomplete=off']) !!} <br>
+@endforeach
 </div>
 <div class="form-group" align="center">
    {!! Form::submit('Guardar', ['class'=>'btn btn-success']) !!}

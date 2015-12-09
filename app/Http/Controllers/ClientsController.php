@@ -49,6 +49,7 @@ class ClientsController extends Controller
         $Correo = new Correo($request->all());
         $Correo ->correo = $request->email;
         $Correo -> cliente_id = $Cliente -> id;
+        $Correo -> estatus = 'ACTIVO';
         $Correo -> save();
         Flash::success('Se ha registrado exitosamente el cliente: '.$Cliente->nombre);
         return redirect()->route('Admin.Clients.index');
@@ -75,7 +76,10 @@ class ClientsController extends Controller
     public function edit($id)
     {
         $cliente = Cliente::find($id);
-        return view('admin.clients.edit')->with('cliente', $cliente);
+        $correo =Correo::all()->where('cliente_id', $cliente->id);
+        return view('admin.clients.edit')
+               ->with('cliente', $cliente)
+               ->with('correo', $correo);
     }
 
     /**
