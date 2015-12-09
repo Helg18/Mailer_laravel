@@ -111,4 +111,12 @@ class ClientsController extends Controller
         Flash::error('El cliente '.$Cliente->nombre.' fue eliminado correctamente');
         return redirect()->route('Admin.Clients.index');
     }
+  
+  /*
+  * Funcion publica para agregar nuevo correo a un cliente.
+  */
+      public function addemail($id)
+    {
+        //
+    }
 }

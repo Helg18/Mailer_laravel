@@ -16,19 +16,17 @@ Route::get('/', function () {
 });
 
 //ruta de ejemplo para capturar datos por la url
-Route::get('cliente/{nombre?}', function($nombre = "No existe el cliente") {
-  echo "El cliente que estas intentando ver es: ".$nombre;
-});
+//Route::get('cliente/{nombre?}', function($nombre = "No existe el cliente") {
+//  echo "El cliente que estas intentando ver es: ".$nombre;
+//});
 
 
     //ruta de ejemplo para llamar un controlador desde una ruta
-    Route::get('clientes/{id?}',[
-      'uses'  =>  'TestController@index',
-      'as'    =>  'ClientesInicio'
-    ]);
+    //Route::get('clientes/{id?}',[
+    //'uses'  =>  'TestController@index',
+    //'as'    =>  'ClientesInicio'
+    //]);
 
-
-//Route::get('detalle', {})
 
 //Inicio route CRUD usuario
 Route::group(['prefix'=>'Admin'], function(){
