@@ -29,7 +29,7 @@ class AddemailController extends Controller
      */
     public function create()
     {
-        //
+        return view('admin.clients.correos.create');
     }
 
     /**
@@ -40,7 +40,7 @@ class AddemailController extends Controller
      */
     public function store(Request $request)
     {
-        //
+         dd($request->all());
     }
 
     /**
@@ -53,6 +53,9 @@ class AddemailController extends Controller
     {
       $clientes = Cliente::find($id);
       $correos = Correo::orderBy('correo', 'ASC')->where('cliente_id', $clientes->id)->get();
+      //$date = $correos -> created_at;
+      //dd($correos);
+      //$correos ->created_at = date_format(date, 'dd/mm/yy');
       //dd($correos); //verificacion de la linea anterior
       return view('admin.clients.correos.index')
              ->with('clientes', $clientes)
@@ -79,7 +82,11 @@ class AddemailController extends Controller
      */
     public function update(Request $request, $id)
     {
-        //
+        $correo= Correo::find($id);
+        $correo->correo = $request -> correo;
+        $correo->save();
+        Flash::success('El Cliente '. $correo->correo .' fue actualizado correctamente');
+        return redirect()->route('Admin.Addemail.index');
     }
 
     /**

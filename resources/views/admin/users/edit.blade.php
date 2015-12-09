@@ -14,11 +14,11 @@ la ruta desde donde estamos trayendo la plantilla matriz
 
 <div class="form-group" align="left">
    {!! Form::label('name', 'Nombre') !!}
-   {!! Form::text('name', $user->name, ['class'=>'form-control', 'placeholder'=>'Nombre' ,'required', 'autocomplete=off']) !!}
+   {!! Form::text('name', $user->name, ['class'=>'form-control', 'placeholder'=>'Nombre' ,'required', 'autocomplete'=>'off']) !!}
 </div>
 <div class="form-group" align="left">
    {!! Form::label('email', 'Correo Electronico') !!}
-   {!! Form::email('email', $user->email, ['class'=>'form-control', 'placeholder'=>'micorreo@midominio.com' ,'required', 'autocomplete=off']) !!}
+   {!! Form::email('email', $user->email, ['class'=>'form-control', 'placeholder'=>'micorreo@midominio.com' ,'required', 'autocomplete'=>'off']) !!}
 </div>
 <div class="form-group" align="left">
    {!! Form::label('password', 'Contraseña') !!}

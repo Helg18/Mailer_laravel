@@ -31,7 +31,7 @@ la ruta desde donde estamos trayendo la plantilla matriz
 
 <div class="form-group" align="left">
    {!! Form::label('name', 'Nombre') !!}
-   {!! Form::text('name', null, ['class'=>'form-control', 'placeholder'=>'Nombre' ,'required']) !!}
+   {!! Form::text('name', null, ['class'=>'form-control', 'placeholder'=>'Nombre' ,'required', 'autocomplete'=>'off']) !!}
 </div>
 <div class="form-group" align="left">
    {!! Form::label('email', 'Correo Electronico') !!}
