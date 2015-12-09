@@ -6,8 +6,11 @@ use Illuminate\Http\Request;
 
 use App\Http\Requests;
 use App\Http\Controllers\Controller;
+use Laracasts\Flash\Flash;
+use App\Cliente;
+use App\Correo;
 
-class addemail extends Controller
+class AddemailController extends Controller
 {
     /**
      * Display a listing of the resource.
@@ -16,7 +19,7 @@ class addemail extends Controller
      */
     public function index()
     {
-        //
+      //
     }
 
     /**
@@ -48,7 +51,12 @@ class addemail extends Controller
      */
     public function show($id)
     {
-        //
+      $clientes = Cliente::find($id);
+      $correos = Correo::orderBy('correo', 'ASC')->where('cliente_id', $clientes->id)->get();
+      //dd($correos); //verificacion de la linea anterior
+      return view('admin.clients.correos.index')
+             ->with('clientes', $clientes)
+             ->with('correos', $correos);
     }
 
     /**

@@ -32,7 +32,7 @@ la ruta desde donde estamos trayendo la plantilla matriz
             <td width="65%">{{ $cliente -> nombre }}</td>
             <td width="15%">{{ $cliente -> created_at }}</td>
             <td width="15%">
-              <a href="" class="label label-success"><i class="glyphicon glyphicon-plus"></i></a> | 
+              <a href="{{ route('Admin.Addemail.show', $cliente->id) }}" class="label label-success"><i class="glyphicon glyphicon-plus"></i></a> | 
               <a href="{{ route('Admin.Clients.edit', $cliente->id )}}" class="label label-warning"><i class="glyphicon glyphicon-pencil"></i></a> | 
               <a href="{{ route('Admin.Clients.destroy', $cliente->id) }}" class="label label-danger" onclick="return confirm('Seguro que deseas eliminar a este usuario?')"><i class="glyphicon glyphicon-remove"></i></a>
             </td>
