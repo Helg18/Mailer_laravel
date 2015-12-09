@@ -31,6 +31,10 @@ la ruta desde donde estamos trayendo la plantilla matriz
    {!! Form::label('nombre', 'Nombre') !!}
    {!! Form::text('nombre', $cliente->nombre, ['class'=>'form-control', 'placeholder'=>'Nombre' ,'required', 'autocomplete=off']) !!}
 </div>
+<div class="form-group" align="left">
+   {!! Form::label('email', 'Email principal') !!}
+   {!! Form::text('email', null, ['class'=>'form-control', 'placeholder'=>'Nombre' ,'required', 'autocomplete=off']) !!}
+</div>
 <div class="form-group" align="center">
    {!! Form::submit('Guardar', ['class'=>'btn btn-success']) !!}
 </div>

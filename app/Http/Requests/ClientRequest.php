@@ -24,7 +24,8 @@ class ClientRequest extends Request
     public function rules()
     {
         return [
-            'nombre'=>'min:4|max:150|required'
+            'nombre'=>'min:4|max:150|required',
+            'email' =>'required|email|min:5'
         ];
     }
 }

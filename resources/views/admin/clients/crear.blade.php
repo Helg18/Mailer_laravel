@@ -33,6 +33,10 @@ la ruta desde donde estamos trayendo la plantilla matriz
    {!! Form::label('nombre', 'Nombre del nuevo cliente') !!}
    {!! Form::text('nombre', null, ['class'=>'form-control', 'placeholder'=>'Mi cliente, C.A.' ,'required']) !!}
 </div>
+<div class="form-group" align="left">
+   {!! Form::label('email', 'Email del nuevo cliente') !!}
+   {!! Form::text('email', null, ['class'=>'form-control', 'placeholder'=>'micorreo@dominio.com' ,'required']) !!}
+</div>
 <div class="form-group" align="center">
    {!! Form::submit('Guardar', ['class'=>'btn btn-success']) !!}
 </div>

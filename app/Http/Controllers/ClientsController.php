@@ -9,6 +9,7 @@ use App\Http\Requests\ClientRequest;
 use App\Http\Controllers\Controller;
 use Laracasts\Flash\Flash;
 use App\Cliente;
+use App\Correo;
 
 class ClientsController extends Controller
 {
@@ -45,6 +46,10 @@ class ClientsController extends Controller
         $Cliente = new Cliente($request->all());
         //$Cliente ->correos=$request->email;
         $Cliente->save();
+        $Correo = new Correo($request->all());
+        $Correo ->correo = $request->email;
+        $Correo -> cliente_id = $Cliente -> id;
+        $Correo -> save();
         Flash::success('Se ha registrado exitosamente el cliente: '.$Cliente->nombre);
         return redirect()->route('Admin.Clients.index');
 
