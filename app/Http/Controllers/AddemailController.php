@@ -94,7 +94,6 @@ class AddemailController extends Controller
     public function update(Request $request, $id)
     {
         //dd($request->all());
-        dd($id);
         $cliente_id = Correo::find($id);
         $correo= Correo::find($id);
         $correo->cliente_id = $cliente_id->cliente_id;
