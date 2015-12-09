@@ -29,7 +29,7 @@ class AddemailController extends Controller
      */
     public function create()
     {
-        return view('admin.clients.correos.create');
+        //return view('admin.clients.correos.create');
     }
 
     /**
@@ -40,7 +40,17 @@ class AddemailController extends Controller
      */
     public function store(Request $request)
     {
-         dd($request->all());
+      //dd($request->all());
+      $correo = new Correo($request->all());
+      $correo ->correo = $request->correonuevo;
+      $correo -> estatus = 'ACTIVO';
+      $correo -> cliente_id = $request->cliente;
+      //dd($correo);
+      $correo->save();
+      $clientes= Cliente::find($correo->cliente_id);
+      Flash::success('Se ha registrado exitosamente el email al cliente '.$clientes->nombre);
+      
+      return redirect()->route('Admin.Clients.index');
     }
 
     /**
@@ -70,7 +80,8 @@ class AddemailController extends Controller
      */
     public function edit($id)
     {
-        //
+        $correos = Correo::find($id);
+        return view('admin.clients.correos.edit')->with('correo', $correos);
     }
 
     /**
@@ -82,11 +93,18 @@ class AddemailController extends Controller
      */
     public function update(Request $request, $id)
     {
+        //dd($request->all());
+        dd($id);
+        $cliente_id = Correo::find($id);
         $correo= Correo::find($id);
-        $correo->correo = $request -> correo;
+        $correo->cliente_id = $cliente_id->cliente_id;
+        $correo->correo = $request -> email;
+        $correo->estatus='ACTIVO';
+        //dd($correo);
         $correo->save();
         Flash::success('El Cliente '. $correo->correo .' fue actualizado correctamente');
-        return redirect()->route('Admin.Addemail.index');
+        return redirect()->route('Admin.Clients.index');
+       
     }
 
     /**

@@ -3,10 +3,10 @@
 la ruta desde donde estamos trayendo la plantilla matriz
 -->
 @section('title')
-   Actualizar correo
+   Actualizar Cliente
 @endsection
 <!-- --><!-- -->
-@section('titlepanel', 'Actualizacion de correo '.$correo -> correo)
+@section('titlepanel', 'Actualizar correos')
 <!-- -->
 @section('content')
 <p align="justify">
@@ -29,7 +29,7 @@ la ruta desde donde estamos trayendo la plantilla matriz
 
 <div class="form-group" align="left">
      {!! Form::label('email', 'Email Principal') !!}
-     {!! Form::text('email', $correo->correo, ['class'=>'form-control', 'placeholder'=>'correo@midominio.com' ,'required', 'autocomplete'=>'off', 'disabled']) !!} <br>
+     {!! Form::text('email', $correo->correo, ['class'=>'form-control', 'placeholder'=>'correo@midominio.com' ,'required', 'autocomplete'=>'off']) !!} <br>
 </div>
 <div class="form-group" align="center">
    {!! Form::submit('Guardar', ['class'=>'btn btn-success']) !!}
