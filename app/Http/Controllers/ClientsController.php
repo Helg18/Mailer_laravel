@@ -44,13 +44,8 @@ class ClientsController extends Controller
     {
         //dd($request->all());
         $Cliente = new Cliente($request->all());
-        //$Cliente ->correos=$request->email;
+        $Cliente -> estatus = $request->estatus;
         $Cliente->save();
-        $Correo = new Correo($request->all());
-        $Correo ->correo = $request->email;
-        $Correo -> cliente_id = $Cliente -> id;
-        $Correo -> estatus = $request->estatus;
-        $Correo -> save();
         Flash::success('Se ha registrado exitosamente el cliente: '.$Cliente->nombre);
         return redirect()->route('Admin.Clients.index');
 
@@ -76,7 +71,7 @@ class ClientsController extends Controller
     public function edit($id)
     {
         $cliente = Cliente::find($id);
-        $correo =Correo::all()->where('cliente_id', $cliente->id);
+        $correo =Correo::all()->where('cliente_id', $cliente->id)->paginate(5);
         return view('admin.clients.edit')
                ->with('cliente', $cliente)
                ->with('correo', $correo);
@@ -91,12 +86,13 @@ class ClientsController extends Controller
      */
     public function update(ClientRequest $request, $id)
     {
-       $Cliente= Cliente::find($id);
+        $Cliente= Cliente::find($id);
         $Cliente->nombre = $request -> nombre;
         $Cliente->estatus= $request -> estatus;
         $Cliente->save();
         Flash::success('El Cliente '. $Cliente->nombre .' fue actualizado correctamente');
-        return redirect()->route('Admin.Clients.index');
+        //return redirect()->route('Admin.Clients.index');
+        return redirect()->route('Admin.Clients.edit', $Cliente->id );
     }
 
     /**

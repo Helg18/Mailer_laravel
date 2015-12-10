@@ -86,7 +86,15 @@ class AddemailController extends Controller
      */
     public function update(Request $request, $id)
     {
-      dd($request->all());
+      //dd($request->all());
+      $correo= Correo::find($id);
+      $antiguo= $correo->correo;
+      $correo->correo = $request->email;
+      $correo->estatus= $request->estatus;
+      //dd($correo);
+      $correo->save();
+      Flash::success('Se modifico el correo '.$antiguo.' por '. $correo->correo .' de forma satisfactoria');
+      return redirect()->route('Admin.Clients.edit', $correo->cliente_id );
     }
 
     /**

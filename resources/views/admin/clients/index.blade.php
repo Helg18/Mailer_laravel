@@ -21,6 +21,7 @@ la ruta desde donde estamos trayendo la plantilla matriz
         <tr>
           <th>ID</th>
           <th>Nombre</th>
+          <th>Estatus</th>
           <th>Cliente desde</th>
           <th>Opciones</th>
         </tr>
@@ -29,9 +30,20 @@ la ruta desde donde estamos trayendo la plantilla matriz
         @foreach($clientes as $cliente)
           <tr>
             <td width="5%">{{ $cliente -> id }}</td>
-            <td width="65%">{{ $cliente -> nombre }}</td>
-            <td width="15%">{{ $cliente -> created_at }}</td>
-            <td width="15%">
+            <td width="60%">{{ $cliente -> nombre }}</td>
+            <td width="10%">
+             @if ( $cliente -> estatus == 'ACTIVO' )
+              <span class="label label-primary">
+                {{ $cliente->estatus }}
+              </span>
+              @else
+               <span class="label label-danger">
+                {{ $cliente->estatus }}
+               </span>
+              @endif
+            </td>
+            <td width="13%">{{ $cliente -> created_at }}</td>
+            <td width="10%">
               <a href="{{ route('Admin.Addemail.create', $cliente->id )}}" class="label label-success"><i class="glyphicon glyphicon-plus"></i></a> | 
               <a href="{{ route('Admin.Clients.edit', $cliente->id )}}" class="label label-warning"><i class="glyphicon glyphicon-pencil"></i></a> | 
               <a href="{{ route('Admin.Clients.destroy', $cliente->id) }}" class="label label-danger" onclick="return confirm('Seguro que deseas eliminar a este usuario?')"><i class="glyphicon glyphicon-remove"></i></a>

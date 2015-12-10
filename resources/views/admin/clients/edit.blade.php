@@ -22,7 +22,7 @@ la ruta desde donde estamos trayendo la plantilla matriz
   @endif
 
 <!-- Fin de los mensajes de errores del respquet propio -->
-<a href="{{ route('Admin.Addemail.create', $cliente->id)}}">Agregar nuevo correo</a>
+<a href="{{ route('Admin.Addemail.create', $cliente->id)}}"  class="label label-info"><i class="glyphicon glyphicon-plus"></i> Agregar nuevo correo</a>
 <!-- Abrimos un formulario con el paquete HTML de laravel collective -->
    {!! Form::open (['route'=>['Admin.Clients.update', $cliente->id], 'method'=>'PUT']) !!} 
 <!--la rota donde quiero enviar los datos,  -->
@@ -30,19 +30,43 @@ la ruta desde donde estamos trayendo la plantilla matriz
    {!! Form::label('nombre', 'Nombre del cliente') !!}
    {!! Form::text('nombre', $cliente->nombre, ['class'=>'form-control', 'placeholder'=>'Nombre' ,'required', 'autocomplete'=>'off']) !!}
 </div>
+<div class="form-group" align="left">
+   {!! Form::label('estatus', 'Estatus del correo') !!}
+   {!! Form::select('estatus', array('ACTIVO' => 'ACTIVO', 'INACTIVO' => 'INACTIVO'), 
+              null, 
+              ['required', 'class'=>'form-control']) !!}
+</div>
 <div class="form-group" align="center">
    {!! Form::submit('Guardar', ['class'=>'btn btn-success']) !!}
 </div>
 {!! Form::close() !!}  
 <table class="table table-striped table-hover table-condensed">
-  <thead>
-    <th>Correos</th>
-    <th>Opciones</th>
-  </thead>
-  <tbody>
+      <thead>
+        <tr>
+          <th>ID</th>
+          <th>Correo</th>
+          <th>Estatus</th>
+          <th>Registrado desde</th>
+          <th>Opciones</th>
+        </tr>
+      </thead>
+      <tbody>
     @foreach ($correo as $correos)
     <tr>
-      <td width="92%">{!! Form::text('email', $correos->correo, ['class'=>'form-control', 'placeholder'=>'correo@midominio.com' ,'required', 'autocomplete'=>'off', 'disabled']) !!}</td>
+      <td width="5%">{!! $correos->id !!}</td>
+      <td width="60%">{!! Form::label('email', $correos->correo) !!}</td>
+      <td width="10%">
+             @if ( $correos -> estatus == 'ACTIVO' )
+              <span class="label label-primary">
+                {{ $correos->estatus }}
+              </span>
+              @else
+               <span class="label label-danger">
+                {{ $correos->estatus }}
+               </span>
+              @endif
+            </td>
+      <td width="13%">{{ $correos -> created_at }}</td>
       <td width="8%">
         <a href="{{ route('Admin.Addemail.edit', $correos->id )}}" class="label label-warning"><i class="glyphicon glyphicon-pencil"></i></a>&nbsp;&nbsp;|&nbsp;
         <a href="" class="label label-danger" onclick="return confirm('Seguro que deseas eliminar a este usuario?')"><i class="glyphicon glyphicon-remove"></i></a>
@@ -52,6 +76,7 @@ la ruta desde donde estamos trayendo la plantilla matriz
     @endforeach
   </tbody>
 </table>
+{!! $clientes -> render()  !!}
   </p>
 @endsection
 <!-- -->
