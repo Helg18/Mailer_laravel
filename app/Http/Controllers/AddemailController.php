@@ -107,7 +107,7 @@ class AddemailController extends Controller
       if($correo->estatus == $estatusantiguo and $correo->correo == $antiguo)
       {
         $guarda = 'no';
-        Flash::error('No se registraron cambios es el cliente '.$correo->correo );
+        Flash::error('No se encontraron cambios para el cliente '.$correo->correo );
       }
       if($guarda == 'si')
       {

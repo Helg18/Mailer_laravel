@@ -43,7 +43,6 @@ la ruta desde donde estamos trayendo la plantilla matriz
 <table class="table table-striped table-hover table-condensed">
       <thead>
         <tr>
-          <th>ID</th>
           <th>Correo</th>
           <th>Estatus</th>
           <th>Registrado desde</th>
@@ -53,8 +52,7 @@ la ruta desde donde estamos trayendo la plantilla matriz
       <tbody>
     @foreach ($correo as $correos)
     <tr>
-      <td width="5%">{!! $correos->id !!}</td>
-      <td width="60%">{!! Form::label('email', $correos->correo) !!}</td>
+      <td width="65%">{!! Form::label('email', $correos->correo) !!}</td>
       <td width="10%">
              @if ( $correos -> estatus == 'ACTIVO' )
               <span class="label label-primary">
@@ -66,8 +64,8 @@ la ruta desde donde estamos trayendo la plantilla matriz
                </span>
               @endif
             </td>
-      <td width="13%">{{ $correos -> created_at }}</td>
-      <td width="8%">
+      <td width="15%">{{ $correos -> created_at }}</td>
+      <td width="10%">
         <a href="{{ route('Admin.Addemail.edit', $correos->id )}}" class="label label-warning"><i class="glyphicon glyphicon-pencil"></i></a>&nbsp;&nbsp;|&nbsp;
         <a href="{{ route('Admin.Addemail.destroy', $correos->id) }}" class="label label-danger" onclick="return confirm('Seguro que deseas eliminar a este usuario?')"><i class="glyphicon glyphicon-remove"></i></a>
             
