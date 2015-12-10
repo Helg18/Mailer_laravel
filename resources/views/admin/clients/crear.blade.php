@@ -1,4 +1,3 @@
-
 @extends('admin.template.main')
 <!--
 la ruta desde donde estamos trayendo la plantilla matriz

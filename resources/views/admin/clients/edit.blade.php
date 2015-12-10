@@ -22,7 +22,7 @@ la ruta desde donde estamos trayendo la plantilla matriz
   @endif
 
 <!-- Fin de los mensajes de errores del respquet propio -->
-
+<a href="{{ route('Admin.Addemail.create', $cliente->id)}}">nuevo correo</a>
 <!-- Abrimos un formulario con el paquete HTML de laravel collective -->
    {!! Form::open (['route'=>['Admin.Clients.update', $cliente->id], 'method'=>'PUT']) !!} 
 <!--la rota donde quiero enviar los datos,  -->
