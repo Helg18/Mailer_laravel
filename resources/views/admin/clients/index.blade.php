@@ -20,7 +20,6 @@ la ruta desde donde estamos trayendo la plantilla matriz
       <thead>
         <tr>
           <th><div align="center">ID</div></th>
-          <th><div align="center">@</div></th>
           <th>Nombre</th>
           <th>Estatus</th>
           <th>Cliente desde</th>
@@ -31,8 +30,7 @@ la ruta desde donde estamos trayendo la plantilla matriz
         @foreach($clientes as $cliente)
           <tr>
             <td width="5%" align="center">{{ $cliente -> id }}</td>
-            <td width="5%" align="center"><span class="badge">42</span></td>
-            <td width="55%">{{ $cliente -> nombre }}</td>
+            <td width="60%">{{ $cliente -> nombre }}</td>
             <td width="10%" align="center">
              @if ( $cliente -> estatus == 'ACTIVO' )
               <span class="label label-primary">
