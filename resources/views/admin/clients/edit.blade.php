@@ -76,7 +76,6 @@ la ruta desde donde estamos trayendo la plantilla matriz
     @endforeach
   </tbody>
 </table>
-{!! $clientes -> render()  !!}
   </p>
 @endsection
 <!-- -->

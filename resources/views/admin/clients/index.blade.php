@@ -19,7 +19,8 @@ la ruta desde donde estamos trayendo la plantilla matriz
     <table class="table table-striped table-hover table-condensed">
       <thead>
         <tr>
-          <th>ID</th>
+          <th><div align="center">ID</div></th>
+          <th><div align="center">@</div></th>
           <th>Nombre</th>
           <th>Estatus</th>
           <th>Cliente desde</th>
@@ -29,9 +30,10 @@ la ruta desde donde estamos trayendo la plantilla matriz
       <tbody>
         @foreach($clientes as $cliente)
           <tr>
-            <td width="5%">{{ $cliente -> id }}</td>
-            <td width="60%">{{ $cliente -> nombre }}</td>
-            <td width="10%">
+            <td width="5%" align="center">{{ $cliente -> id }}</td>
+            <td width="5%" align="center"><span class="badge">42</span></td>
+            <td width="55%">{{ $cliente -> nombre }}</td>
+            <td width="10%" align="center">
              @if ( $cliente -> estatus == 'ACTIVO' )
               <span class="label label-primary">
                 {{ $cliente->estatus }}
@@ -42,8 +44,8 @@ la ruta desde donde estamos trayendo la plantilla matriz
                </span>
               @endif
             </td>
-            <td width="13%">{{ $cliente -> created_at }}</td>
-            <td width="10%">
+            <td width="13%" align="center">{{ $cliente -> created_at }}</td>
+            <td width="10%" align="center">
               <a href="{{ route('Admin.Addemail.create', $cliente->id )}}" class="label label-success"><i class="glyphicon glyphicon-plus"></i></a> | 
               <a href="{{ route('Admin.Clients.edit', $cliente->id )}}" class="label label-warning"><i class="glyphicon glyphicon-pencil"></i></a> | 
               <a href="{{ route('Admin.Clients.destroy', $cliente->id) }}" class="label label-danger" onclick="return confirm('Seguro que deseas eliminar a este usuario?')"><i class="glyphicon glyphicon-remove"></i></a>

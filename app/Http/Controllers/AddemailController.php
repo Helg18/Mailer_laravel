@@ -89,13 +89,32 @@ class AddemailController extends Controller
       //dd($request->all());
       $correo= Correo::find($id);
       $antiguo= $correo->correo;
+      $estatusantiguo= $correo->estatus;
       $correo->correo = $request->email;
       $correo->estatus= $request->estatus;
       //dd($correo);
       $correo->save();
-      Flash::success('Se modifico el correo '.$antiguo.' por '. $correo->correo .' de forma satisfactoria');
+      if($antiguo == $correo->correo and $correo->estatus != $estatusantiguo)
+      {
+        $guarda = 'si';
+        Flash::success('El correo '.$correo->correo .' ahora se encuentra '.$correo->estatus);
+      }
+      if($antiguo != $correo->correo)
+      {
+        $guarda='si';
+        Flash::success('Se modifico el correo '.$antiguo.' por '. $correo->correo .' de forma satisfactoria');
+      }
+      if($correo->estatus == $estatusantiguo and $correo->correo == $antiguo)
+      {
+        $guarda = 'no';
+        Flash::error('No se registraron cambios es el cliente '.$correo->correo );
+      }
+      if($guarda == 'si')
+      {
+      $correo->save();
+      }
       return redirect()->route('Admin.Clients.edit', $correo->cliente_id );
-    }
+    }//fin del metodo
 
     /**
      * Remove the specified resource from storage.

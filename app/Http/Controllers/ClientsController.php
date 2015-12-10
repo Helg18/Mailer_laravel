@@ -71,7 +71,7 @@ class ClientsController extends Controller
     public function edit($id)
     {
         $cliente = Cliente::find($id);
-        $correo =Correo::all()->where('cliente_id', $cliente->id)->paginate(5);
+        $correo =Correo::all()->where('cliente_id', $cliente->id);
         return view('admin.clients.edit')
                ->with('cliente', $cliente)
                ->with('correo', $correo);
