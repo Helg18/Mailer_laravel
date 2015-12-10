@@ -128,17 +128,7 @@ class AddemailController extends Controller
         $cliente = Cliente::find($correo->cliente_id);
         $correo -> delete();
       
-        Flash::error('El correo '.$correo->correo.' fue eliminado correctamente');
-      
-      $to      = 'helg18@gmail.com';
-$subject = 'Correo Eliminado';
-$message = 'El correo '.$correo->correo.' asignado al cliente '.$cliente->nombre.' Fue eliminado exitosamente';
-$headers = 'From: Notificacion@codeanuwhere.com' . "\r\n" .
-    'Reply-To: helg18@gmail.com' . "\r\n" .
-    'X-Mailer: PHP/' . phpversion();
-
-mail($to, $subject, $message, $headers);
-      
+        Flash::error('El correo '.$correo->correo.' fue eliminado correctamente');      
         return redirect()->route('Admin.Clients.edit', $correo->cliente_id );
       
       
