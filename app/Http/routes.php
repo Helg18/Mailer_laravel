@@ -34,7 +34,7 @@ Route::group(['prefix'=>'Admin'], function(){
     ]);
   
   Route::resource('Addemail', 'AddemailController');
-  Route::get('Addemail/create/{id}?', [
+  Route::get('Addemail/{id}/create', [
     'uses'=>'AddemailController@create',
     'as'  =>'Admin.Addemail.create'
   ]);  

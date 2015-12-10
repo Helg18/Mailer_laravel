@@ -3,12 +3,10 @@
 la ruta desde donde estamos trayendo la plantilla matriz
 -->
 @section('title')
-    Cliente
+   Actualizar correo
 @endsection
 <!-- --><!-- -->
-@section('titlepanel')
-<h4>Creacion de nuevo cliente</h4>
-@endsection
+@section('titlepanel', 'Actualizacion de correos de '.$cliente->nombre)
 <!-- -->
 @section('content')
 <p align="justify">
@@ -24,28 +22,24 @@ la ruta desde donde estamos trayendo la plantilla matriz
   @endif
 
 <!-- Fin de los mensajes de errores del respquet propio -->
-
+<a href="{{ route('Admin.Addemail.create', $cliente->id)}}">Agregar nuevo correo</a>
 <!-- Abrimos un formulario con el paquete HTML de laravel collective -->
-   {!! Form::open (['route'=>'Admin.Clients.store', 'method'=>'POST']) !!} 
+   {!! Form::open (['route'=>['Admin.Addemail.update', $correo->id], 'method'=>'PUT']) !!} 
 <!--la rota donde quiero enviar los datos,  -->
-
 <div class="form-group" align="left">
-   {!! Form::label('nombre', 'Nombre del nuevo cliente') !!}
-   {!! Form::text('nombre', null, ['class'=>'form-control', 'placeholder'=>'Mi cliente, C.A.' ,'required', 'autocomplete'=>'off']) !!}
+   {!! Form::label('email', 'Actualizar correo') !!}
+   {!! Form::text('email', $correo->correo, ['class'=>'form-control', 'placeholder'=>'correo@domiino.com' ,'required', 'autocomplete'=>'off']) !!}
 </div>
 <div class="form-group" align="left">
-   {!! Form::label('estatus', 'Estatus del cliente') !!}
+   {!! Form::label('estatus', 'Estatus del correo') !!}
    {!! Form::select('estatus', array('ACTIVO' => 'ACTIVO', 'INACTIVO' => 'INACTIVO'), 
               null, 
-              ['required', 'class'=>'form-control']) !!}
+              ['placeholder' => 'Seleccione un estatus para este correo...', 'required', 'class'=>'form-control']) !!}
 </div>
 <div class="form-group" align="center">
    {!! Form::submit('Guardar', ['class'=>'btn btn-success']) !!}
 </div>
-
-
-{!! Form::close() !!}
-  
+{!! Form::close() !!}  
   </p>
 @endsection
 <!-- -->

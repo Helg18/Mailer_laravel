@@ -49,7 +49,7 @@ class ClientsController extends Controller
         $Correo = new Correo($request->all());
         $Correo ->correo = $request->email;
         $Correo -> cliente_id = $Cliente -> id;
-        $Correo -> estatus = 'ACTIVO';
+        $Correo -> estatus = $request->estatus;
         $Correo -> save();
         Flash::success('Se ha registrado exitosamente el cliente: '.$Cliente->nombre);
         return redirect()->route('Admin.Clients.index');
@@ -93,6 +93,7 @@ class ClientsController extends Controller
     {
        $Cliente= Cliente::find($id);
         $Cliente->nombre = $request -> nombre;
+        $Cliente->estatus= $request -> estatus;
         $Cliente->save();
         Flash::success('El Cliente '. $Cliente->nombre .' fue actualizado correctamente');
         return redirect()->route('Admin.Clients.index');
@@ -110,13 +111,5 @@ class ClientsController extends Controller
         $Cliente -> delete();
         Flash::error('El cliente '.$Cliente->nombre.' fue eliminado correctamente');
         return redirect()->route('Admin.Clients.index');
-    }
-  
-  /*
-  * Funcion publica para agregar nuevo correo a un cliente.
-  */
-      public function addemail($id)
-    {
-        //
     }
 }

@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 
+use Laracasts\Flash\Flash;
 use App\Http\Requests;
 use App\Http\Controllers\Controller;
 use App\Cliente;
@@ -28,7 +29,8 @@ class AddemailController extends Controller
      */
     public function create($id)
     {
-      return view('admin.clients.correos.index');
+      $cliente = Cliente::find($id);
+      return view('admin.clients.correos.index')->with('cliente', $cliente);
     }
 
     /**
@@ -39,7 +41,15 @@ class AddemailController extends Controller
      */
     public function store(Request $request)
     {
-        //
+      $Cliente = Cliente::find($request->id);
+      $correo = new Correo;
+      $correo->correo = $request->email;
+      $correo->estatus= 'ACTIVO';
+      $correo->cliente_id = $request->id;
+      //dd($correo); //Verificacion de recepcion de todos los datos.
+      $correo->save();
+      Flash::success('Se agrego el correo '.$correo->correo.' al cliente '. $Cliente->nombre .' de forma satisfactoria');
+      return redirect()->route('Admin.Clients.index');
     }
 
     /**
@@ -61,7 +71,10 @@ class AddemailController extends Controller
      */
     public function edit($id)
     {
-        //
+      //dd($id);  // Verificacion de recepcion de datos
+      $correo = Correo::find($id);
+      $cliente = Cliente::find($correo->cliente_id);
+      return view('admin.clients.correos.edit')->with('correo', $correo)->with('cliente', $cliente);
     }
 
     /**
@@ -73,7 +86,7 @@ class AddemailController extends Controller
      */
     public function update(Request $request, $id)
     {
-        //
+      dd($request->all());
     }
 
     /**
