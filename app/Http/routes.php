@@ -38,6 +38,10 @@ Route::group(['prefix'=>'Admin'], function(){
     'uses'=>'AddemailController@create',
     'as'  =>'Admin.Addemail.create'
   ]);  
+  Route::get('Addemail/{id}/destroy', [
+    'uses' => 'AddemailController@destroy',
+    'as'=>'Admin.Addemail.destroy'
+  ]);
   
   
   

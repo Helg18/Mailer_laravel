@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 
+use DB;
 use App\Http\Requests;
 use App\Http\Requests\ClientRequest;
 use App\Http\Controllers\Controller;
@@ -20,7 +21,7 @@ class ClientsController extends Controller
      */
     public function index()
     {
-        $clientes = Cliente::orderBy('id', 'ASC')->paginate(10);
+        $clientes = Cliente::orderBy('nombre', 'ASC')->paginate(10);
         return view('admin.clients.index')->with('clientes', $clientes);
     }
 
@@ -71,7 +72,12 @@ class ClientsController extends Controller
     public function edit($id)
     {
         $cliente = Cliente::find($id);
-        $correo =Correo::all()->where('cliente_id', $cliente->id);
+        //$correo =Correo::all()->orderBy('correo', 'ASC')->where('cliente_id', $cliente->id);
+        $correo = DB::table('correos')
+                    ->where('cliente_id', $cliente->id)
+                    ->orderBy('correo', 'ASC')
+                    ->get();
+      //dd($users);
         return view('admin.clients.edit')
                ->with('cliente', $cliente)
                ->with('correo', $correo);

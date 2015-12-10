@@ -69,7 +69,7 @@ la ruta desde donde estamos trayendo la plantilla matriz
       <td width="13%">{{ $correos -> created_at }}</td>
       <td width="8%">
         <a href="{{ route('Admin.Addemail.edit', $correos->id )}}" class="label label-warning"><i class="glyphicon glyphicon-pencil"></i></a>&nbsp;&nbsp;|&nbsp;
-        <a href="" class="label label-danger" onclick="return confirm('Seguro que deseas eliminar a este usuario?')"><i class="glyphicon glyphicon-remove"></i></a>
+        <a href="{{ route('Admin.Addemail.destroy', $correos->id) }}" class="label label-danger" onclick="return confirm('Seguro que deseas eliminar a este usuario?')"><i class="glyphicon glyphicon-remove"></i></a>
             
       </td>
     </tr>

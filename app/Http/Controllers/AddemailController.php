@@ -49,7 +49,7 @@ class AddemailController extends Controller
       //dd($correo); //Verificacion de recepcion de todos los datos.
       $correo->save();
       Flash::success('Se agrego el correo '.$correo->correo.' al cliente '. $Cliente->nombre .' de forma satisfactoria');
-      return redirect()->route('Admin.Clients.index');
+      return redirect()->route('Admin.Clients.edit', $correo->cliente_id );
     }
 
     /**
@@ -124,6 +124,24 @@ class AddemailController extends Controller
      */
     public function destroy($id)
     {
-        //
+        $correo = Correo::find($id);
+        $cliente = Cliente::find($correo->cliente_id);
+        $correo -> delete();
+      
+        Flash::error('El correo '.$correo->correo.' fue eliminado correctamente');
+      
+      $to      = 'helg18@gmail.com';
+$subject = 'Correo Eliminado';
+$message = 'El correo '.$correo->correo.' asignado al cliente '.$cliente->nombre.' Fue eliminado exitosamente';
+$headers = 'From: Notificacion@codeanuwhere.com' . "\r\n" .
+    'Reply-To: helg18@gmail.com' . "\r\n" .
+    'X-Mailer: PHP/' . phpversion();
+
+mail($to, $subject, $message, $headers);
+      
+        return redirect()->route('Admin.Clients.edit', $correo->cliente_id );
+      
+      
+      
     }
 }
