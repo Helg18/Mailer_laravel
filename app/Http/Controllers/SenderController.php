@@ -50,16 +50,28 @@ class SenderController extends Controller
       $correos_inactivos=0;
       $clientes_inactivos=0;
       $cliente_activos=0;
+      $total_clientes=0;
+      $total_correos=0;
         $asunto    = $request->asunto;
         $cuerpo    = $request->cuerpo;
         $cabeceras = 'From: henry.leon@mailer.com' . "\r\n" .
         'Reply-To: henry.leon@mailer.com' . "\r\n" .
         'X-Mailer: PHP/' . phpversion();
 
-
+        $emails= Correo::all();
+        foreach ($emails as $email => $identificador)
+        {
+          if($identificador->id >= 1)
+          {
+            $total_correos++;
+          }
+        }
+      
+      
         $Cliente = Cliente::all();//->where('estatus', 'ACTIVO');
 
         foreach ($Cliente as $estatus => $id) {
+         $total_clientes++;
             //echo $id."<br>";
             if ($id->estatus =='ACTIVO') {
                 $cliente_activos++;
@@ -87,9 +99,9 @@ class SenderController extends Controller
         }
         Flash::success(
           'Se enviaron '.$correos_enviados.
-          "/".($correos_enviados+$correos_inactivos).
+          "/".($total_correos).
           " correos a ".$cliente_activos.
-          "/".($cliente_activos+$clientes_inactivos).
+          "/".($total_clientes).
           " clientes activos");
         return redirect()->route('Admin.Clients.index');
     }
