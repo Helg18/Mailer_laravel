@@ -26,20 +26,29 @@ la ruta desde donde estamos trayendo la plantilla matriz
 <!-- Abrimos un formulario con el paquete HTML de laravel collective -->
    {!! Form::open (['route'=>['Admin.Clients.update', $cliente->id], 'method'=>'PUT']) !!} 
 <!--la rota donde quiero enviar los datos,  -->
-<div class="form-group" align="left">
-   {!! Form::label('nombre', 'Nombre del cliente') !!}
+ <div class="form-group" align="left">
+  <div class="col-xs-9" align="left">
+   {!! Form::label('nombre', 'Nombre del cliente') !!} 
+  </div>
+  
+  <div align="right" class="col-xs-3">
+    Registrado desde <a class="label label-warning">{!!$cliente->created_at!!}</a>
+   </div>
+   
    {!! Form::text('nombre', $cliente->nombre, ['class'=>'form-control', 'placeholder'=>'Nombre' ,'required', 'autocomplete'=>'off']) !!}
-</div>
+ </div>
+
 <div class="form-group" align="left">
    {!! Form::label('estatus', 'Estatus del correo') !!}
    {!! Form::select('estatus', array('ACTIVO' => 'ACTIVO', 'INACTIVO' => 'INACTIVO'), 
               $cliente->estatus, 
               ['required', 'class'=>'form-control']) !!}
+  
 </div>
 <div class="form-group" align="center">
    {!! Form::submit('Guardar', ['class'=>'btn btn-success']) !!}
+   {!! Form::close() !!}  
 </div>
-{!! Form::close() !!}  
 <table class="table table-striped table-hover table-condensed">
       <thead>
         <tr>

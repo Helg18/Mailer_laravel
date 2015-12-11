@@ -27,7 +27,15 @@ la ruta desde donde estamos trayendo la plantilla matriz
    {!! Form::open (['route'=>['Admin.Sender.update', $correo->id], 'method'=>'PUT']) !!} 
 <!--la rota donde quiero enviar los datos,  -->
 <div class="form-group" align="left">
+  
+  <div class="col-xs-9" align="left">
    {!! Form::label('email', 'Actualizar correo') !!}
+  </div>
+  
+  <div align="right" class="col-xs-3">
+    Registrado desde <a class="label label-warning">{!!$cliente->created_at!!}</a>
+  </div>
+  
    {!! Form::text('email', $correo->correo, ['class'=>'form-control', 'placeholder'=>'correo@domiino.com' ,'required', 'autocomplete'=>'off']) !!}
 </div>
 <div class="form-group" align="left">
