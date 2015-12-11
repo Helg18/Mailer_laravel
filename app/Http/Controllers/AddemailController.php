@@ -19,7 +19,7 @@ class AddemailController extends Controller
      */
     public function index()
     {
-      //
+      return redirect()->route('Admin.Users.index');
     }
 
     /**

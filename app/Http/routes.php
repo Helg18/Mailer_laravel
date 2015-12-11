@@ -11,12 +11,14 @@
 | 
 */
 
-Route::get('/', function () {
+  Route::get('/', function () {
     return view('welcome'); 
 });
 
 //Inicio route CRUD usuario
-Route::group(['prefix'=>'Admin'], function(){
+Route::group(['prefix'=>'Admin', 'middleware' => 'auth'], function(){
+  
+
   
   Route::resource('Users', 'UsersController');
   
@@ -52,6 +54,19 @@ Route::group(['prefix'=>'Admin'], function(){
 });
 
 
+// Authentication routes...
+Route::get('Admin/Auth/login', [
+  'uses' => 'Auth\AuthController@getLogin',
+  'as'   => 'Admin.Auth.login'
+]);
+Route::post('Admin/Auth/login', [
+  'uses' => 'Auth\AuthController@postLogin',
+  'as'   => 'Admin.Auth.login'
+]);
+Route::get('Admin/Auth/logout', [
+  'uses' => 'Auth\AuthController@getLogout',
+  'as'   => 'Admin.Auth.logout'
+]);
 
 
 

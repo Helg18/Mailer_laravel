@@ -4,7 +4,13 @@ la ruta desde donde estamos trayendo la plantilla matriz
 -->
 @section('title', 'Inicio')
 <!-- -->
+@section('titlepanel')
+<h4>Menu Pricipal</h4>
+@endsection
+
+
 @section('content')
+@if(Auth::user())
 <h1 class="alert alert-warning" align="center">Opciones Disponibles</h1>
 <p>
   <table class="table table-hover table-striped table-condensed "> 	
@@ -16,5 +22,10 @@ la ruta desde donde estamos trayendo la plantilla matriz
   </tr>
   </table>
 </p>
+@else
+<div class="group-form" align="center">
+  <a class="btn btn-primary" href="{{ route('Admin.Auth.login') }}" >Iniciar sesion</a>
+</div>
+@endif
 
 @endsection

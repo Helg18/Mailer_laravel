@@ -13,6 +13,7 @@
 
     <!-- Collect the nav links, forms, and other content for toggling -->
     <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
+      @if(Auth::user())
       <ul class="nav navbar-nav">
         <li><a href="{{ route('Admin.Users.index') }}">Usuarios <span class="sr-only">(current)</span></a></li>
         <li><a href="{{ route('Admin.Clients.index') }}">Clientes <span class="sr-only">(current)</span></a></li>
@@ -21,16 +22,18 @@
       </ul>
       <ul class="nav navbar-nav navbar-right">
        <li class="dropdown">
-          <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false"><i class="glyphicon glyphicon-cog"></i>Opciones <span class="caret"></span></a>
+          <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">
+            <i class="glyphicon glyphicon-cog"></i>{{ Auth::user()->name }} <span class="caret"></span></a>
           <ul class="dropdown-menu">
             <li><a href="{{ route('Admin.Users.index') }}">Usuarios</a></li>
             <li><a href="{{ route('Admin.Clients.index') }}">Clientes</a></li>
             <li><a href="{{ route('Admin.Sender.index') }}">Bombardear</a></li>
             <li role="separator" class="divider"></li>
-            <li><a href="#">Cerrar Sesion</a></li>
+            <li><a href="{{ route('Admin.Auth.logout') }}">Cerrar Sesion</a></li>
           </ul>
         </li>
       </ul>
+      @endif
     </div><!-- /.navbar-collapse -->
   </div><!-- /.container-fluid -->
 </nav>
