@@ -13,7 +13,7 @@ class correosTableSeeder extends Seeder
      */
     public function run()
     {
-        for ($i=0; $i < 150; $i++) {
+        for ($i=0; $i < 900; $i++) {
         $usuario = new Correo();
         $faker = Faker\Factory::create();
         $usuario->correo = $faker->email;

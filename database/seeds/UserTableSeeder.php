@@ -13,6 +13,11 @@ class UserTableSeeder extends Seeder
      */
     public function run()
     {   
+        $admin = new User();
+        $admin->name = 'Henry Leon Gomez';
+        $admin->email = 'helg18@gmail.com';
+        $admin->password = bcrypt("administrador");
+        $admin->save();
       for ($i=0; $i < 25; $i++) {
         $usuario = new User();
         $faker = Faker\Factory::create();
