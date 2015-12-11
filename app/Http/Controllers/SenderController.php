@@ -12,6 +12,12 @@ use App\Http\Controllers\Controller;
 
 class SenderController extends Controller
 {
+  
+    public function listarcorreos()
+    {
+      $Correos=Correo::orderBy('correo', 'ASC')->paginate(10);
+      return view('admin.sender.lista')->with('Correos', $Correos);
+    }
     /**
      * Display a listing of the resource.
      *
@@ -66,6 +72,7 @@ class SenderController extends Controller
                     $correos_enviados++;
                     $para  = $value->correo;
                     mail($para, $asunto, $cuerpo, $cabeceras);
+                    
                   }
                   else
                   {
@@ -84,7 +91,6 @@ class SenderController extends Controller
           " correos a ".$cliente_activos.
           "/".($cliente_activos+$clientes_inactivos).
           " clientes activos");
-
         return redirect()->route('Admin.Clients.index');
     }
 
@@ -107,7 +113,9 @@ class SenderController extends Controller
      */
     public function edit($id)
     {
-        //
+      $correo = Correo::find($id);
+      $cliente = Cliente::find($correo->cliente_id);
+      return view('admin.sender.edit')->with('correo', $correo)->with('cliente', $cliente);
     }
 
     /**
@@ -119,7 +127,33 @@ class SenderController extends Controller
      */
     public function update(Request $request, $id)
     {
-        //
+      $correo= Correo::find($id);
+      $antiguo= $correo->correo;
+      $estatusantiguo= $correo->estatus;
+      $correo->correo = $request->email;
+      $correo->estatus= $request->estatus;
+      //dd($correo);
+      $correo->save();
+      if($antiguo == $correo->correo and $correo->estatus != $estatusantiguo)
+      {
+        $guarda = 'si';
+        Flash::success('El correo '.$correo->correo .' ahora se encuentra '.$correo->estatus);
+      }
+      if($antiguo != $correo->correo)
+      {
+        $guarda='si';
+        Flash::success('Se modifico el correo '.$antiguo.' por '. $correo->correo .' de forma satisfactoria');
+      }
+      if($correo->estatus == $estatusantiguo and $correo->correo == $antiguo)
+      {
+        $guarda = 'no';
+        Flash::error('No se encontraron cambios para el cliente '.$correo->correo );
+      }
+      if($guarda == 'si')
+      {
+      $correo->save();
+      }
+      return redirect()->route('Admin.Sender.listarcorreos', $correo->cliente_id );
     }
 
     /**
@@ -130,6 +164,11 @@ class SenderController extends Controller
      */
     public function destroy($id)
     {
-        //
+        $correo = Correo::find($id);
+        $cliente = Cliente::find($correo->cliente_id);
+        $correo -> delete();
+      
+        Flash::error('El correo '.$correo->correo.' fue eliminado correctamente');      
+        return redirect()->route('Admin.Sender.listarcorreos', $correo->cliente_id );
     }
 }

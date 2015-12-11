@@ -17,6 +17,7 @@
         <li><a href="{{ route('Admin.Users.index') }}">Usuarios <span class="sr-only">(current)</span></a></li>
         <li><a href="{{ route('Admin.Clients.index') }}">Clientes <span class="sr-only">(current)</span></a></li>
         <li><a href="{{ route('Admin.Sender.index') }}">Bombardear</a></li>
+        <li><a href="{{ route('Admin.Sender.listarcorreos') }}">Correos</a></li>
       </ul>
       <ul class="nav navbar-nav navbar-right">
        <li class="dropdown">

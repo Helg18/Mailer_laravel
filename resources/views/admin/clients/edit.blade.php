@@ -33,7 +33,7 @@ la ruta desde donde estamos trayendo la plantilla matriz
 <div class="form-group" align="left">
    {!! Form::label('estatus', 'Estatus del correo') !!}
    {!! Form::select('estatus', array('ACTIVO' => 'ACTIVO', 'INACTIVO' => 'INACTIVO'), 
-              null, 
+              $cliente->estatus, 
               ['required', 'class'=>'form-control']) !!}
 </div>
 <div class="form-group" align="center">

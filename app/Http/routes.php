@@ -44,6 +44,10 @@ Route::group(['prefix'=>'Admin'], function(){
   ]);
   
   Route::resource('Sender', 'SenderController');
+  Route::get('Admin.Sender.listarcorreos', [
+    'uses' => 'SenderController@listarcorreos',
+    'as'   => 'Admin.Sender.listarcorreos'
+  ]);
   
 });
 
