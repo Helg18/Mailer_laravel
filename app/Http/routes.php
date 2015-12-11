@@ -43,7 +43,7 @@ Route::group(['prefix'=>'Admin'], function(){
     'as'=>'Admin.Addemail.destroy'
   ]);
   
-  
+  Route::resource('Sender', 'SenderController');
   
 });
 

@@ -16,15 +16,15 @@
       <ul class="nav navbar-nav">
         <li><a href="{{ route('Admin.Users.index') }}">Usuarios <span class="sr-only">(current)</span></a></li>
         <li><a href="{{ route('Admin.Clients.index') }}">Clientes <span class="sr-only">(current)</span></a></li>
-        <li><a href="#">Bombardear</a></li>
+        <li><a href="{{ route('Admin.Sender.index') }}">Bombardear</a></li>
       </ul>
       <ul class="nav navbar-nav navbar-right">
        <li class="dropdown">
           <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false"><i class="glyphicon glyphicon-cog"></i>Opciones <span class="caret"></span></a>
           <ul class="dropdown-menu">
-            <li><a href="#">Usuarios</a></li>
-            <li><a href="#">Clientes</a></li>
-            <li><a href="#">Bombardear</a></li>
+            <li><a href="{{ route('Admin.Users.index') }}">Usuarios</a></li>
+            <li><a href="{{ route('Admin.Clients.index') }}">Clientes</a></li>
+            <li><a href="{{ route('Admin.Sender.index') }}">Bombardear</a></li>
             <li role="separator" class="divider"></li>
             <li><a href="#">Cerrar Sesion</a></li>
           </ul>

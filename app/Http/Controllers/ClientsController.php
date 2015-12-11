@@ -22,7 +22,7 @@ class ClientsController extends Controller
     public function index()
     {
         $clientes = Cliente::orderBy('nombre', 'ASC')->paginate(10);
-        return view('admin.clients.index')->with('clientes', $clientes)->with('correos', $correo);
+        return view('admin.clients.index')->with('clientes', $clientes);
     }
 
     /**
