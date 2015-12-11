@@ -73,7 +73,8 @@ class SenderController extends Controller
         foreach ($Cliente as $estatus => $id) {
          $total_clientes++;
             //echo $id."<br>";
-            if ($id->estatus =='ACTIVO') {
+            if ($id->estatus =='ACTIVO') 
+            {
                 $cliente_activos++;
                 $Correo = Correo::all()->where('cliente_id', $id->id);
 
@@ -86,16 +87,9 @@ class SenderController extends Controller
                     mail($para, $asunto, $cuerpo, $cabeceras);
                     
                   }
-                  else
-                  {
-                    $correos_inactivos++;
-                  }
                 }
             }
-            else
-            {
-              $clientes_inactivos++;
-            }
+            
         }
         Flash::success(
           'Se enviaron '.$correos_enviados.
