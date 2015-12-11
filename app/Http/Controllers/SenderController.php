@@ -78,7 +78,13 @@ class SenderController extends Controller
               $clientes_inactivos++;
             }
         }
-        Flash::success('Se enviaron '.$correos_enviados." correos a ".$cliente_activos." clientes activos");
+        Flash::success(
+          'Se enviaron '.$correos_enviados.
+          "/".($correos_enviados+$correos_inactivos).
+          " correos a ".$cliente_activos.
+          "/".($cliente_activos+$clientes_inactivos).
+          " clientes activos");
+
         return redirect()->route('Admin.Clients.index');
     }
 
