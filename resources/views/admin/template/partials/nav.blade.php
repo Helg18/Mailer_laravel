@@ -15,7 +15,9 @@
     <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
       @if(Auth::user())
       <ul class="nav navbar-nav">
+      @if(Auth::user()->perfil=='root')
         <li><a href="{{ route('Admin.Users.index') }}">Usuarios <span class="sr-only">(current)</span></a></li>
+      @endif
         <li><a href="{{ route('Admin.Clients.index') }}">Clientes <span class="sr-only">(current)</span></a></li>
         <li><a href="{{ route('Admin.Sender.index') }}">Bombardear</a></li>
         <li><a href="{{ route('Admin.Sender.listarcorreos') }}">Correos</a></li>
