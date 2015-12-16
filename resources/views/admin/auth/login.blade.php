@@ -21,4 +21,5 @@ la ruta desde donde estamos trayendo la plantilla matriz
   {!! Form::submit('Acceder', ['class'=>'btn btn-primary']) !!}
 </div>
 {!! Form::close() !!}
+<a href="#"> Registrate aqui</a>
 @endsection
