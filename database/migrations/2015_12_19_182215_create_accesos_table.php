@@ -14,7 +14,11 @@ class CreateAccesosTable extends Migration
     {
         Schema::create('accesos', function (Blueprint $table) {
             $table->increments('id');
-            $table->string('');
+            $table->boolean('create');
+            $table->boolean('read');
+            $table->boolean('update');
+            $table->boolean('delete');
+            $table->string('user_id');   
             $table->timestamps();
         });
     }
