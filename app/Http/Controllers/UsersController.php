@@ -48,8 +48,11 @@ class UsersController extends Controller
 
       $user             = new User($request->all());
       $user -> password = bcrypt($request->password); //aca encripto la contraseña
+      $user -> perfil   = 'usuario';
       $user -> save();
       $accesos          = new Accesos();
+      $accesos -> user_id = $user->id;
+      $accesos -> crea
       
       Flash::success('Se ha registrado exitosamente el usuario: '.$user->name);
       
