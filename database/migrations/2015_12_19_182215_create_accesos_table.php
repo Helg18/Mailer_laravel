@@ -18,7 +18,9 @@ class CreateAccesosTable extends Migration
             $table->boolean('read');
             $table->boolean('update');
             $table->boolean('delete');
-            $table->string('user_id');   
+            $table->string('user_id')->unsigned(); 
+
+            $table->foreign('user_id')->references('id')->on('users');
             $table->timestamps();
         });
     }

@@ -6,6 +6,7 @@ use Illuminate\Http\Request;
 use App\Http\Requests;
 use App\Http\Controllers\Controller;
 use App\User;
+use App\Accessos;
 use Laracasts\Flash\Flash;
 use App\Http\Requests\UserRequest;
 
@@ -44,10 +45,11 @@ class UsersController extends Controller
      */
     public function store(UserRequest $request)
     {
-      
-      $user = new User($request->all());
-      $user -> password=bcrypt($request->password); //aca encripto la contraseña
-      $user->save();
+
+      $user             = new User($request->all());
+      $user -> password = bcrypt($request->password); //aca encripto la contraseña
+      $user -> save();
+      $accesos          = new Accesos();
       
       Flash::success('Se ha registrado exitosamente el usuario: '.$user->name);
       
