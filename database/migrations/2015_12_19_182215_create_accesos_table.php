@@ -20,7 +20,7 @@ class CreateAccesosTable extends Migration
             $table->boolean('delete');
             $table->string('user_id')->unsigned(); 
 
-            $table->foreign('user_id')->references('id')->on('users');
+            $table->foreign('user_id')->references('id')->on('users')-onDelete('cascade');
             $table->timestamps();
         });
     }
