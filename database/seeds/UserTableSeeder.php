@@ -22,11 +22,11 @@ class UserTableSeeder extends Seeder
         $admin   -> save();
         $accesos             = new Acceso();
         $accesos -> user_id  = $admin->id;
-        $accesos -> create   = 0;
-        $accesos -> read     = 0;
-        $accesos -> update   = 0;
-        $accesos -> delete   = 0;
-        
+        $accesos -> create   = 1;
+        $accesos -> read     = 1;
+        $accesos -> update   = 1;
+        $accesos -> delete   = 1;
+
         for ($i=0; $i < 25; $i++) {
         $usuario             = new User();
         $faker               = Faker\Factory::create();
@@ -37,10 +37,10 @@ class UserTableSeeder extends Seeder
         $usuario -> save();
         $accesos             = new Acceso();
         $accesos -> user_id  = $usuario->id;
-        $accesos -> create   = 1;
-        $accesos -> read     = 1;
-        $accesos -> update   = 1;
-        $accesos -> delete   = 1;
+        $accesos -> create   = 0;
+        $accesos -> read     = 0;
+        $accesos -> update   = 0;
+        $accesos -> delete   = 0;
       }
     }
  
