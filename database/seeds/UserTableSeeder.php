@@ -3,7 +3,7 @@
 use Illuminate\Database\Seeder;
 use fzaninotto\faker\faker\Factory;
 use App\User;
-use App\Acceso;
+use App\Accesos;
 
 class UserTableSeeder extends Seeder
 {
@@ -20,7 +20,7 @@ class UserTableSeeder extends Seeder
         $admin   -> password = bcrypt("henry");
         $admin   -> perfil   = 'root';
         $admin   -> save();
-        $accesos             = new Acceso();
+        $accesos             = new Accesos();
         $accesos -> user_id  = $admin->id;
         $accesos -> create   = 1;
         $accesos -> read     = 1;
@@ -35,7 +35,7 @@ class UserTableSeeder extends Seeder
         $usuario -> password = bcrypt($faker->name);
         $usuario -> perfil   = 'usuario';
         $usuario -> save();
-        $accesos             = new Acceso();
+        $accesos             = new Accesos();
         $accesos -> user_id  = $usuario->id;
         $accesos -> create   = 0;
         $accesos -> read     = 0;
